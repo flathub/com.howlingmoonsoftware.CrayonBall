@@ -1,6 +1,6 @@
 app-id: com.howlingmoonsoftware.CrayonBall
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: crayonball
 
@@ -10,28 +10,38 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --socket=pulseaudio
-
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - '*.la'
+  - '*.a'
 modules:
-  - shared-modules/SDL2/SDL2-with-libdecor.json
   - shared-modules/glu/glu-9.json
+
   - name: openal-soft
     buildsystem: cmake-ninja
+    cleanup:
+      - /bin
+      - /lib/ruby
+      - /share
     sources:
       - type: archive
-        url: https://openal-soft.org/openal-releases/openal-soft-1.24.3.tar.bz2
-        sha256: cb5e6197a1c0da0edcf2a81024953cc8fa8545c3b9474e48c852af709d587892
+        url: https://openal-soft.org/openal-releases/openal-soft-1.25.1.tar.bz2
+        sha256: 4c2aff6f81975f46ecc5148d092c4948c71dbfb76e4b9ba4bf1fce287f47d4b5
         x-checker-data:
           type: anitya
           stable-only: true
           project-id: 8172
           url-template: https://openal-soft.org/openal-releases/openal-soft-$version.tar.bz2
+
+  - name: Ruby
+    build-options:
+      cflags: -Wno-error=incompatible-pointer-types -Wno-error=implicit-int
     cleanup:
       - /bin
-      - /include
-      - /lib/cmake
-      - /lib/pkgconfig
+      - /lib/ruby
       - /share
-  - name: Ruby
     sources:
       - type: archive
         url: https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7.tar.gz
@@ -40,13 +50,11 @@ modules:
         commands:
           - rm -rf ext/openssl
           - cp -p /usr/share/automake-*/config.{sub,guess} .
-    cleanup:
-      - /bin
-      - /lib/*.a
-      - /lib/ruby
-      - /share
+
   - name: CrayonBall
     buildsystem: meson
+    cleanup:
+      - /lib
     sources:
       - type: git
         url: https://github.com/slembcke/CrayonBall.git
@@ -56,6 +64,6 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
       - type: patch
-        path: crayonball-ruby.patch
-    cleanup:
-      - /lib
+        paths:
+          - fix-appdata.patch
+          - crayonball-ruby.patch
