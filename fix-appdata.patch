@@ -1,0 +1,108 @@
+From de04d21abf2aab54e41902d25868edf3661d613c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Sabri=20=C3=9Cnal?= <yakushabb@gmail.com>
+Date: Fri, 6 Feb 2026 23:14:06 +0300
+Subject: [PATCH] Fix appdata paper cuts
+
+---
+ ...com.howlingmoonsoftware.CrayonBall.desktop |  2 +-
+ ...owlingmoonsoftware.CrayonBall.metainfo.xml | 49 ++++++++++---------
+ 2 files changed, 26 insertions(+), 25 deletions(-)
+
+diff --git a/data/com.howlingmoonsoftware.CrayonBall.desktop b/data/com.howlingmoonsoftware.CrayonBall.desktop
+index cd95360..254b783 100644
+--- a/data/com.howlingmoonsoftware.CrayonBall.desktop
++++ b/data/com.howlingmoonsoftware.CrayonBall.desktop
+@@ -3,4 +3,4 @@ Type=Application
+ Name=Crayon Ball
+ Exec=crayonball
+ Icon=com.howlingmoonsoftware.CrayonBall
+-Categories=X-Games
++Categories=Game;ArcadeGame;
+diff --git a/data/com.howlingmoonsoftware.CrayonBall.metainfo.xml b/data/com.howlingmoonsoftware.CrayonBall.metainfo.xml
+index 23ad6a7..2c4b15a 100644
+--- a/data/com.howlingmoonsoftware.CrayonBall.metainfo.xml
++++ b/data/com.howlingmoonsoftware.CrayonBall.metainfo.xml
+@@ -1,55 +1,56 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<component type="desktop">
++<component type="desktop-application">
+   <id>com.howlingmoonsoftware.CrayonBall</id>
+   <name>Crayon Ball</name>
+-  <launchable type="desktop-id"/>
+-  <developer_name>Howling Moon Software</developer_name>
+-  <url type="homepage">http://howlingmoonsoftware.com/crayonball.php</url>
+-  <categories>
+-    <category>Game</category>
+-    <category>ArcadeGame</category>
+-  </categories>
++  <launchable type="desktop-id">com.howlingmoonsoftware.CrayonBall.desktop</launchable>
++  <developer id="com.howlingmoonsoftware">
++    <name>Howling Moon Software</name>
++  </developer>
++  <url type="homepage">https://howlingmoonsoftware.com/crayonball.php</url>
++  <url type="bugtracker">https://github.com/slembcke/CrayonBall/issues</url>
++  <url type="vcs-browser">https://github.com/slembcke/CrayonBall</url>
++  <content_rating type="oars-1.1" />
++  <project_license>GPL-3.0-only</project_license>
++  <metadata_license>CC-BY-SA-4.0</metadata_license>
+   <summary>A fast paced match-4 puzzler</summary>
+   <description>
+     <p>Color matching, ball popping, and physics fun!</p>
+-    <p>When a group of four same-colored balls touch, they will burst and an avalanche of new balls will tumble in to take their place. Quickly and strategically click to burst a few more to set up the next match even before they settle into place!</p>
+-    <p>Originally released in 2007 for the Mac as ScribBall, and re-masted as Crayon Ball in 2009. After finding the source code we decided to open source it. Enjoy!</p>
++    <p>When a group of four same-colored balls touch, they will burst and an avalanche of
++      new balls will tumble in to take their place. Quickly and strategically click to burst
++      a few more to set up the next match even before they settle into place!</p>
++    <p>Originally released in 2007 for the Mac as ScribBall, and re-masted as Crayon Ball in 2009.
++      After finding the source code we decided to open source it. Enjoy!</p>
+   </description>
+-  
+   <screenshots>
+     <screenshot type="default">
+       <caption>Gameplay with the Crayon Ball Theme</caption>
+-      <image width="800" height="499">http://howlingmoonsoftware.com/crayonball/screenshot6.jpg</image>
++      <image width="800" height="499">https://howlingmoonsoftware.com/crayonball/screenshot6.jpg</image>
+     </screenshot>
+     <screenshot type="default">
+       <caption>Gameplay with the 8-bit theme</caption>
+-      <image width="800" height="501">http://howlingmoonsoftware.com/crayonball/screenshot1.jpg</image>
++      <image width="800" height="501">https://howlingmoonsoftware.com/crayonball/screenshot1.jpg</image>
+     </screenshot>
+     <screenshot type="default">
+       <caption>Gameplay with the Van Gogh Theme</caption>
+-      <image width="800" height="501">http://howlingmoonsoftware.com/crayonball/screenshot3.jpg</image>
++      <image width="800" height="501">https://howlingmoonsoftware.com/crayonball/screenshot3.jpg</image>
+     </screenshot>
+     <screenshot type="default">
+       <caption>Gameplay with the Water Color Theme</caption>
+-      <image width="800" height="500">http://howlingmoonsoftware.com/crayonball/screenshot4.jpg</image>
++      <image width="800" height="500">https://howlingmoonsoftware.com/crayonball/screenshot4.jpg</image>
+     </screenshot>
+     <screenshot type="default">
+       <caption>Gameplay with Nedroid's Horse Party Theme</caption>
+-      <image width="800" height="500">http://howlingmoonsoftware.com/crayonball/screenshot5.jpg</image>
++      <image width="800" height="500">https://howlingmoonsoftware.com/crayonball/screenshot5.jpg</image>
+     </screenshot>
+   </screenshots>
+-  
+-  <content_rating type="oars-1.0" />
+-  <project_license>GPL-3.0-only</project_license>
+-  <metadata_license>CC-BY-SA-4.0</metadata_license>
+   <releases>
+     <release version="2.3.3" date="2025-03-30">
+       <description>
+         <p>Make the game more touchscreen friendly, and fixed some metadata info.</p>
+-        <issues>
+-          <issue>Added an extra tolerance when clicking on balls to make it easier to play on a touchscreen.</issue>
+-          <issue>Added the missing launchable tag to the metainfo.</issue>
+-        <issues/>
++        <ul>
++          <li>Added an extra tolerance when clicking on balls to make it easier to play on a touchscreen.</li>
++          <li>Added the missing launchable tag to the metainfo.</li>
++        </ul>
+       </description>
+     </release>
+     <release version="2.3.2" date="2023-08-21" />
+-- 
+2.53.0
+
