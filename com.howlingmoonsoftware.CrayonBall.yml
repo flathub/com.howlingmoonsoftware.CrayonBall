@@ -1,6 +1,6 @@
 app-id: com.howlingmoonsoftware.CrayonBall
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: crayonball
 
@@ -14,8 +14,6 @@ cleanup:
   - /include
   - /lib/cmake
   - /lib/pkgconfig
-  - '*.la'
-  - '*.a'
 modules:
   - shared-modules/glu/glu-9.json
 
@@ -23,12 +21,11 @@ modules:
     buildsystem: cmake-ninja
     cleanup:
       - /bin
-      - /lib/ruby
-      - /share
+      - /share/openal
     sources:
       - type: archive
-        url: https://openal-soft.org/openal-releases/openal-soft-1.25.1.tar.bz2
-        sha256: 4c2aff6f81975f46ecc5148d092c4948c71dbfb76e4b9ba4bf1fce287f47d4b5
+        url: https://openal-soft.org/openal-releases/openal-soft-1.25.2.tar.bz2
+        sha256: 1dbaac44e7579d5bc8847ca8db4b2e8b9fd3961041f35ee20def4958301e1089
         x-checker-data:
           type: anitya
           stable-only: true
@@ -37,11 +34,9 @@ modules:
 
   - name: Ruby
     build-options:
-      cflags: -Wno-error=incompatible-pointer-types -Wno-error=implicit-int
+      cflags: -Wno-error=incompatible-pointer-types -Wno-error=implicit-int -std=gnu17
     cleanup:
-      - /bin
-      - /lib/ruby
-      - /share
+      - "*"
     sources:
       - type: archive
         url: https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7.tar.gz
@@ -53,6 +48,8 @@ modules:
 
   - name: CrayonBall
     buildsystem: meson
+    build-options:
+      cflags: -Wno-error=incompatible-pointer-types
     cleanup:
       - /lib
     sources:
