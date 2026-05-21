@@ -17,21 +17,6 @@ cleanup:
 modules:
   - shared-modules/glu/glu-9.json
 
-  - name: openal-soft
-    buildsystem: cmake-ninja
-    cleanup:
-      - /bin
-      - /share/openal
-    sources:
-      - type: archive
-        url: https://openal-soft.org/openal-releases/openal-soft-1.25.2.tar.bz2
-        sha256: 1dbaac44e7579d5bc8847ca8db4b2e8b9fd3961041f35ee20def4958301e1089
-        x-checker-data:
-          type: anitya
-          stable-only: true
-          project-id: 8172
-          url-template: https://openal-soft.org/openal-releases/openal-soft-$version.tar.bz2
-
   - name: Ruby
     build-options:
       cflags: -Wno-error=incompatible-pointer-types -Wno-error=implicit-int -std=gnu17
